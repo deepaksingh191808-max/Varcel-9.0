@@ -1,0 +1,8 @@
+{
+  "name": "margin-calculator-9-0",
+  "version": "9.0.0",
+  "description": "Margin Calculator Ver 9.0 — Zomato Partner Pricing",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
