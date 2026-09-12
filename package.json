@@ -1,0 +1,23 @@
+{
+  "name": "margin-calculator-9-0",
+  "version": "9.0.0",
+  "description": "Margin Calculator Ver 9.0 — Zomato Partner Pricing",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepaksingh191808-max/Varcel-9.0.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deepaksingh191808-max/Varcel-9.0/issues"
+  },
+  "homepage": "https://github.com/deepaksingh191808-max/Varcel-9.0#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
