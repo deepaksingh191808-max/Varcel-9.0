@@ -1678,10 +1678,22 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
   });
 });
 
-/* ================= INITIALIZATION ================= */
+/* ================= Init ================= */
 renderDishTable();
-renderAllSystemCards();
-updateAllUI();
+fullRender();
 </script>
+
+<!-- Vercel Analytics -->
+<script defer src="/_vercel/insights/script.js"></script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+
+<!-- Vercel Speed Insights -->
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+
 </body>
 </html>
