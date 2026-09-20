@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Margin Calculator Ver 9.0 — Zomato Partner Pricing</title>
+<title>Margin Calculator Ver 9.6 — Partner Pricing & Take Home</title>
 <style>
   :root{
     --crimson:#E23744;
@@ -60,7 +60,7 @@
   .brand-text .l2{font-size:11.5px;font-weight:700;opacity:0.6;}
   .ver-pill{margin-left:auto;background:var(--ink);color:#fff;font-size:11.5px;font-weight:800;padding:4px 12px;border-radius:999px;flex-shrink:0;}
 
-  /* ---------- Tabs ---------- */
+  /* ---------- Nav Tabs ---------- */
   .tabs{max-width:1240px;margin:0 auto;padding:12px 16px 0;display:flex;gap:8px;flex-wrap:wrap;}
   .tab-btn{background:var(--card);border:none;border-radius:999px;padding:8px 20px;font-size:13.5px;font-weight:800;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.12);}
   .tab-btn.active{background:var(--ink);color:#fff;}
@@ -88,15 +88,43 @@
     text-shadow:0 1px 8px rgba(0,0,0,0.2);
   }
 
-  /* ---------- Shared dual pricing card ---------- */
+  /* ---------- Price / Revenue Cards ---------- */
   .price-card{background:var(--card);border-radius:12px;padding:14px 18px;box-shadow:0 6px 16px rgba(0,0,0,0.15);margin-bottom:14px;}
   .dual-price-row{display:grid;grid-template-columns:1fr 0.7fr 1fr;gap:14px;}
   @media (max-width:700px){ .dual-price-row{grid-template-columns:1fr;} }
   .price-box label{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.03em;opacity:0.6;margin-bottom:4px;}
-  .price-input-wrap{display:flex;align-items:center;gap:6px;border-bottom:2px solid var(--soft);padding-bottom:2px;}
+  .price-input-wrap{display:flex;align-items:center;gap:6px;border-bottom:2px solid var(--soft);padding-bottom:3px;}
   .price-input-wrap span{font-weight:800;color:var(--crimson);font-size:18px;}
   .price-input-wrap input{border:none;outline:none;font-family:inherit;font-weight:800;font-size:20px;width:100%;background:transparent;color:var(--ink);}
   .markup-box .price-input-wrap input{color:var(--crimson-dark);}
+
+  .grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:14px;
+  }
+  @media (max-width:820px){ .grid-2{grid-template-columns:1fr;} }
+
+  .card-box{
+    background:var(--card);
+    border-radius:12px;
+    padding:14px 16px;
+    box-shadow:0 6px 16px rgba(0,0,0,0.15);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    height:78px;
+  }
+  .card-box label{
+    display:block;
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    opacity:0.6;
+    margin-bottom:4px;
+  }
 
   /* ---------- Shared Food Cost Card ---------- */
   .shared-config{
@@ -123,13 +151,12 @@
   }
   .shared-config-left{display:flex;flex-direction:column;gap:6px;}
   .shared-config .cost-card-top{display:flex;justify-content:space-between;align-items:center;}
-  .shared-config .cost-controls{display:flex;align-items:center;gap:8px;margin:6px 0;}
+  .shared-config .cost-controls{display:flex;align-items:center;gap:6px;margin:6px 0;}
   .shared-config .cost-rupee{
     display:flex;align-items:center;justify-content:space-between;
     border-top:1px dashed #EEE1E3;padding-top:6px;margin-top:4px;
   }
 
-  /* Right Search Benchmark Box */
   .shared-config-right{
     background:var(--soft);
     border-radius:10px;
@@ -149,9 +176,7 @@
     margin-bottom:4px;
     text-align:center;
   }
-  .mini-search-wrap{
-    position:relative;
-  }
+  .mini-search-wrap{position:relative;}
   .mini-search-input{
     width:100%;
     padding:6px 10px;
@@ -183,10 +208,7 @@
     cursor:pointer;
     border-bottom:1px solid #f0f0f0;
   }
-  .mini-search-item:hover{
-    background:var(--soft);
-  }
-
+  .mini-search-item:hover{background:var(--soft);}
   .selected-benchmark-box{
     margin-top:6px;
     padding:6px 8px;
@@ -209,30 +231,54 @@
     margin-top:2px;
   }
 
-  /* ---------- Layout w/ divider ---------- */
-  .split-layout{display:grid;grid-template-columns:1fr 2px 1fr;gap:24px;align-items:start;margin-top:2px;}
-  @media (max-width:880px){ .split-layout{grid-template-columns:1fr;gap:12px;} .split-divider{display:none;} .split-divider-h{display:block;} }
+  /* ---------- Side-By-Side Split Layout ---------- */
+  .split-layout, .takehome-split{
+    display:grid;
+    grid-template-columns:1fr 2px 1fr;
+    gap:24px;
+    margin-top:10px;
+  }
+  @media (max-width:880px){ .split-layout, .takehome-split{grid-template-columns:1fr;gap:12px;} .split-divider{display:none;} }
   .split-divider{background:var(--divider);width:2px;align-self:stretch;border-radius:2px;}
-  .split-divider-h{display:none;height:2px;background:var(--divider);border-radius:2px;margin:10px 0;}
 
-  .col-title{font-size:14px;font-weight:800;color:#fff;margin-bottom:10px;padding:6px 12px;background:rgba(0,0,0,0.28);border-radius:6px;display:inline-block;}
+  .column-box{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
 
-  /* ---------- Primary Summary Tiles (Matching Below Cards in Height & Style) ---------- */
-  .top-summary{display:grid;grid-template-columns:repeat(auto-fit, minmax(110px, 1fr));gap:8px;margin-bottom:12px;}
-  
+  .col-header-title{
+    font-size:14px;
+    font-weight:800;
+    color:#fff;
+    padding:6px 12px;
+    background:rgba(0,0,0,0.28);
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  /* ---------- Summary Tiles ---------- */
+  .col-summary{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(110px, 1fr));
+    gap:8px;
+    margin-bottom:4px;
+  }
+  @media (max-width:520px){ .col-summary{grid-template-columns:1fr;} }
+
   .stat-tile{
     background:#fff;
     border-radius:10px;
-    padding:10px 12px;
+    padding:10px 10px;
     box-shadow:0 3px 8px rgba(0,0,0,0.08);
     border:1.5px solid #E2C2C6;
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-    height:102px;
+    height:88px;
   }
   .stat-tile .lbl{
-    font-size:10.5px;
+    font-size:9.5px;
     font-weight:800;
     text-transform:uppercase;
     letter-spacing:0.02em;
@@ -240,130 +286,315 @@
     line-height:1.2;
   }
   .stat-tile .val{
-    font-size:20px;
+    font-size:18px;
     font-weight:800;
     margin-top:4px;
     color:var(--ink);
   }
-  
   .stat-tile.profit{
     border:2px solid var(--green);
     background:var(--green-tint);
   }
-  .stat-tile.profit .val{
-    color:var(--green);
-  }
+  .stat-tile.profit .val{ color:var(--green); }
   .stat-tile.profit.loss{
     border-color:var(--danger);
     background:var(--danger-tint);
   }
-  .stat-tile.profit.loss .val{
-    color:var(--danger);
-  }
+  .stat-tile.profit.loss .val{ color:var(--danger); }
   .stat-tile.cost-tile{
     border:1.5px solid var(--crimson-dark);
     background:var(--soft);
   }
-  .stat-tile.cost-tile .val{
-    color:var(--crimson-dark);
-  }
+  .stat-tile.cost-tile .val{ color:var(--crimson-dark); }
 
-  /* ---------- Matched rows & Standardized Cards ---------- */
-  .matched-rows{display:flex;flex-direction:column;gap:8px;margin-top:2px;}
-  .match-row{display:grid;grid-template-columns:1fr 2px 1fr;gap:24px;align-items:stretch;}
-  @media (max-width:880px){ .match-row{grid-template-columns:1fr;gap:12px;} .match-row .match-divider{display:none;} }
-  .match-divider{background:var(--divider);width:2px;border-radius:2px;}
-  .match-slot{min-width:0;display:flex;flex-direction:column;justify-content:center;}
-  .empty-slot{border:1px dashed rgba(255,255,255,0.3);border-radius:8px;height:102px;}
-
-  /* Standardized Card Layout */
-  .cost-card{
-    background:var(--card);
-    border-radius:10px;
-    padding:8px 12px;
-    box-shadow:0 3px 8px rgba(0,0,0,0.08);
-    transition:opacity .15s;
-    position:relative;
-    height:102px;
+  /* ---------- UNIFIED SCREENSHOT COST CARD DESIGN ---------- */
+  .cost-card-list{
     display:flex;
     flex-direction:column;
-    justify-content:space-between;
-  }
-  .cost-card.disabled{opacity:0.42;}
-  .cost-card.new::before{
-    content:"NEW";position:absolute;top:-6px;left:8px;background:var(--amber);color:#fff;
-    font-size:8.5px;font-weight:800;letter-spacing:0.03em;padding:1px 6px;border-radius:999px;
-  }
-  .cost-card-top{display:flex;justify-content:space-between;align-items:center;gap:6px;}
-  .cost-name{font-weight:800;font-size:13px;line-height:1.15;}
-  .cost-name-input{font-weight:800;font-size:12.5px;border:1px solid #ccc;border-radius:4px;padding:2px 6px;width:100%;max-width:160px;}
-  .cost-hint{font-size:10px;font-weight:600;opacity:0.55;margin-top:2px;line-height:1.1;}
-  .cost-actions{display:flex;align-items:center;gap:6px;flex-shrink:0;}
-
-  .switch{position:relative;width:32px;height:18px;flex-shrink:0;}
-  .switch input{opacity:0;width:0;height:0;}
-  .slider-track{position:absolute;cursor:pointer;inset:0;background:#E6D5D7;border-radius:999px;transition:.15s;}
-  .slider-track:before{content:"";position:absolute;height:12px;width:12px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.15s;box-shadow:0 1px 2px rgba(0,0,0,0.3);}
-  .switch input:checked + .slider-track{background:var(--crimson);}
-  .switch input:checked + .slider-track:before{transform:translateX(14px);}
-
-  .trash-btn{background:none;border:none;cursor:pointer;font-size:13px;padding:1px 3px;line-height:1;border-radius:4px;opacity:0.5;}
-  .trash-btn:hover{opacity:1;color:var(--danger);}
-
-  /* Card Middle Controls Row */
-  .cost-mid-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:8px;
-    margin:2px 0;
+    gap:10px;
   }
 
-  .unit-toggle{display:inline-flex;border:1px solid #E2C2C6;border-radius:6px;overflow:hidden;}
-  .unit-toggle button{background:var(--soft);border:none;font-size:10px;font-weight:800;padding:4px 8px;cursor:pointer;color:var(--ink);opacity:0.65;white-space:nowrap;}
-  .unit-toggle button.active{background:var(--crimson);color:#fff;opacity:1;}
+  .cost-card {
+    background: #ffffff;
+    border: 1.5px solid #E2C2C6;
+    border-radius: 12px;
+    padding: 10px 14px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80px;
+    width: 100%;
+    transition: opacity .15s;
+    position: relative;
+  }
 
-  .stepper{display:flex;align-items:center;border:1px solid #EEE1E3;border-radius:6px;overflow:hidden;height:24px;width:fit-content;}
-  .step-btn{background:var(--soft);border:none;width:24px;height:24px;font-size:13px;font-weight:800;cursor:pointer;color:var(--crimson);}
-  .step-btn:hover{background:var(--border);}
-  input.pct-input{width:40px;height:24px;border:none;border-left:1px solid #EEE1E3;border-right:1px solid #EEE1E3;text-align:center;font-size:12px;font-weight:800;font-family:inherit;color:var(--ink);}
-  input.pct-input::-webkit-outer-spin-button, input.pct-input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
-  .pct-sign{padding:0 3px;font-weight:800;font-size:11px;opacity:0.5;}
+  .cost-card.disabled {
+    opacity: 0.45;
+  }
 
-  .money-input-wrap{display:flex;align-items:center;gap:3px;border:1px solid #EEE1E3;border-radius:6px;padding:1px 6px;height:24px;width:fit-content;min-width:90px;}
-  .money-input-wrap span{font-weight:800;color:var(--crimson);font-size:12px;}
-  input.money-input{border:none;outline:none;font-family:inherit;font-weight:800;font-size:12.5px;width:100%;background:transparent;color:var(--ink);}
+  /* Top Row of Card: Name on Left, Switch on Right */
+  .cost-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
 
-  .cost-controls{display:flex;align-items:center;gap:6px;}
+  .cost-name {
+    font-weight: 800;
+    font-size: 13.5px;
+    color: #111111;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-  .cost-rupee{font-size:11.5px;display:flex;justify-content:space-between;align-items:center;border-top:1px dashed #EEE1E3;padding-top:4px;font-weight:600;opacity:0.85;}
-  
-  .cost-rupee .amt{
-    font-weight:800;opacity:1;
-    background:var(--soft);
+  .cost-name-input {
+    font-weight: 800;
+    font-size: 12.5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 1px 4px;
+    width: 100%;
+    max-width: 140px;
+  }
+
+  .cost-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  /* Bottom Row of Card: Stepper + Toggle on Left, Amount Badge on Right */
+  .cost-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .cost-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .stepper {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #EEE1E3;
+    border-radius: 6px;
+    overflow: hidden;
+    height: 26px;
+    background: #ffffff;
+  }
+
+  .step-btn {
+    background: #FBF2F3;
+    border: none;
+    width: 22px;
+    height: 26px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    color: var(--crimson);
+  }
+  .step-btn:hover { background: var(--border); }
+
+  .input-pct-wrap {
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+  }
+
+  input.pct-input {
+    width: 36px;
+    height: 26px;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 800;
+    font-family: inherit;
+    color: #111111;
+  }
+  input.pct-input::-webkit-outer-spin-button, input.pct-input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
+
+  .pct-sign {
+    font-weight: 800;
+    font-size: 11px;
+    opacity: 0.65;
+    padding-left: 1px;
+    color: #111111;
+  }
+
+  .money-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    border: 1px solid #EEE1E3;
+    border-radius: 6px;
+    padding: 1px 6px;
+    height: 26px;
+    width: fit-content;
+    min-width: 80px;
+    background: #ffffff;
+  }
+  .money-input-wrap span {
+    font-weight: 800;
+    color: var(--crimson);
+    font-size: 12px;
+  }
+  input.money-input {
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 12px;
+    width: 100%;
+    background: transparent;
+    color: #111111;
+  }
+
+  .unit-toggle {
+    display: inline-flex;
+    border: 1px solid #E2C2C6;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .unit-toggle button {
+    background: #FBF2F3;
+    border: none;
+    font-size: 9.5px;
+    font-weight: 800;
+    padding: 4px 8px;
+    cursor: pointer;
+    color: #111111;
+    opacity: 0.65;
+    white-space: nowrap;
+  }
+
+  .unit-toggle button.active {
+    background: var(--crimson);
+    color: #ffffff;
+    opacity: 1;
+  }
+
+  .cost-rupee {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .amt {
+    font-weight: 800;
+    font-size: 12px;
+    background: var(--blue-bg);
+    color: var(--blue-text);
+    border: 1px solid var(--blue-border);
+    padding: 2px 10px;
+    border-radius: 999px;
+    display: inline-block;
+  }
+
+  .switch {
+    position: relative;
+    width: 32px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider-track {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #E6D5D7;
+    border-radius: 999px;
+    transition: 0.15s;
+  }
+
+  .slider-track:before {
+    content: "";
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    left: 3px;
+    top: 3px;
+    background: #ffffff;
+    border-radius: 50%;
+    transition: 0.15s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .switch input:checked + .slider-track {
+    background: var(--crimson);
+  }
+
+  .switch input:checked + .slider-track:before {
+    transform: translateX(14px);
+  }
+
+  .trash-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 1px 3px;
+    line-height: 1;
+    border-radius: 4px;
+    opacity: 0.5;
+  }
+  .trash-btn:hover { opacity: 1; color: var(--danger); }
+
+  .add-card-btn{
+    width:100%;
+    background:rgba(255,255,255,0.6);
+    border:1.5px dashed var(--crimson);
+    border-radius:8px;
+    padding:8px 12px;
+    font-size:12px;
+    font-weight:800;
     color:var(--crimson-dark);
-    padding:2px 8px;
-    border-radius:999px;
-    border:1px solid var(--border);
-    font-size:11.5px;
+    cursor:pointer;
+    text-align:center;
+    margin-top:4px;
   }
-  .cost-rupee .amt.pct-blue{
-    background:var(--blue-bg);
-    color:var(--blue-text);
-    border:1px solid var(--blue-border);
-  }
-
-  .add-card-btn{width:100%;background:rgba(255,255,255,0.6);border:1.5px dashed var(--crimson);border-radius:8px;padding:8px 12px;font-size:12px;font-weight:800;color:var(--crimson-dark);cursor:pointer;text-align:center;}
   .add-card-btn:hover{background:rgba(255,255,255,0.9);}
 
-  /* ---------- Delta card ---------- */
-  .delta-card{margin-top:16px;background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(0,0,0,0.15);text-align:center;}
-  .delta-card .lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.03em;opacity:0.6;}
-  .delta-card .val{font-size:26px;font-weight:800;color:var(--green);margin-top:3px;}
-  .delta-card .val.loss{color:var(--danger);}
-  .delta-card .msg{font-size:12px;font-weight:600;opacity:0.75;margin-top:4px;max-width:540px;margin-left:auto;margin-right:auto;line-height:1.35;}
+  /* ---------- Delta Card ---------- */
+  .delta-card{
+    margin-top:18px;
+    background:var(--card);
+    border-radius:12px;
+    padding:18px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.15);
+    text-align:center;
+  }
+  .delta-card .lbl{
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    opacity:0.6;
+  }
+  .delta-card .val{
+    font-size:28px;
+    font-weight:800;
+    color:var(--green);
+    margin-top:4px;
+  }
+  .delta-card .val.loss{ color:var(--danger); }
 
-  /* ---------- Comparison & Help Centre page ---------- */
+  /* ---------- Help Centre & Database Tables ---------- */
   .compare-card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(0,0,0,0.15);overflow-x:auto;}
   .compare-card-sm{padding:14px;}
   
@@ -413,8 +644,8 @@
 
   footer.foot{text-align:center;color:#fff;opacity:0.8;font-size:11.5px;padding:16px 0 0;font-weight:600;}
 
-  /* ---------- Hey Zooman page ---------- */
-  .zooman-box{display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--card);border-radius:14px;padding:32px 24px;box-shadow:0 8px 20px rgba(0,0,0,0.18);max-width:500px;margin:20px auto 0;}
+  /* ---------- Hey Zooman ---------- */
+  .zooman-box{display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--card);border-radius:14px;padding:32px 24px;box-shadow:0 8px 20px rgba(0,0,0,0.18);max-width:500px;margin:10px auto 20px;}
   .zooman-logo{width:56px;height:56px;border-radius:50%;background:var(--crimson);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;margin-bottom:16px;}
   .zooman-msg{font-size:13.5px;font-weight:600;line-height:1.55;opacity:0.85;margin:0 0 18px;}
   .zooman-link{display:inline-block;background:var(--crimson);color:#fff;font-weight:800;font-size:13px;padding:10px 22px;border-radius:999px;text-decoration:none;}
@@ -430,38 +661,37 @@
       <span class="l1">Margin Calculator</span>
       <span class="l2">Zomato partner pricing &amp; profitability</span>
     </div>
-    <span class="ver-pill">Ver 9.0</span>
+    <span class="ver-pill">Ver 9.6</span>
   </div>
 </header>
 
 <nav class="tabs">
   <button class="tab-btn active" data-page="page-calc">📊 Margin Calculator</button>
-  <button class="tab-btn" data-page="page-compare">📋 Help Centre</button>
+  <button class="tab-btn" data-page="page-takehome">💰 Take Home</button>
   <button class="tab-btn tab-btn-right" data-page="page-zooman">👋 Hey Zooman</button>
 </nav>
 
 <div class="wrap">
 
-  <!-- ================= PAGE 1: MARGIN CALCULATOR ================= -->
+  <!-- ================= TAB 1: MARGIN CALCULATOR ================= -->
   <section class="page active" id="page-calc">
     <div class="page-header-row">
       <h1 class="page-title">Dine-in vs. Zomato</h1>
     </div>
 
-    <!-- Initial Prices set to 0 -->
     <div class="price-card">
       <div class="dual-price-row">
         <div class="price-box">
           <label>Offline Price (Dine-in)</label>
-          <div class="price-input-wrap"><span>₹</span><input type="number" id="poffInput" value="0"></div>
+          <div class="price-input-wrap"><span>₹</span><input type="number" id="poffInput" value="300"></div>
         </div>
         <div class="price-box markup-box">
           <label>Markup %</label>
-          <div class="price-input-wrap"><input type="number" id="markupInput" value="0"><span>%</span></div>
+          <div class="price-input-wrap"><input type="number" id="markupInput" value="20"><span>%</span></div>
         </div>
         <div class="price-box">
           <label>Zomato Price (Online)</label>
-          <div class="price-input-wrap"><span>₹</span><input type="number" id="ponInput" value="0"></div>
+          <div class="price-input-wrap"><span>₹</span><input type="number" id="ponInput" value="360"></div>
         </div>
       </div>
     </div>
@@ -473,24 +703,20 @@
         <div class="cost-card-top">
           <div>
             <div class="cost-name">Raw Material / Food Cost % <span style="font-weight:600;opacity:0.6;">(of Offline Price)</span></div>
-            <div class="cost-hint">Food Cost is always calculated on Offline Menu prices, both Zomato and Dine-in</div>
-          </div>
-          <div class="cost-actions">
-            <label class="switch"><input type="checkbox" id="fcEnabled" checked><span class="slider-track"></span></label>
           </div>
         </div>
 
         <div class="cost-controls">
           <div class="stepper">
-            <button type="button" class="step-btn" data-fc="dec">–</button>
-            <input type="number" class="pct-input" id="fcPct" value="25" min="0" max="100">
-            <button type="button" class="step-btn" data-fc="inc">+</button>
+            <button type="button" class="step-btn" id="itemRmDec">–</button>
+            <div class="input-pct-wrap">
+              <input type="number" class="pct-input" id="itemRmPctInput" value="25" min="0" max="100"><span class="pct-sign">%</span>
+            </div>
+            <button type="button" class="step-btn" id="itemRmInc">+</button>
           </div>
-          <span class="pct-sign">%</span>
         </div>
         <div class="cost-rupee">
-          <span>Absolute value / plate</span>
-          <span class="amt pct-blue" id="fcAmountVal">₹0</span>
+          <span class="amt" id="itemRmAmtVal">₹75</span>
         </div>
       </div>
 
@@ -498,50 +724,229 @@
         <div class="mini-table-title">⚡ Food Cost Benchmarks</div>
         
         <div class="mini-search-wrap">
-          <input type="text" id="miniDishSearch" class="mini-search-input" placeholder="🔍 Search Help Centre database...">
-          <div id="miniSearchDropdown" class="mini-search-dropdown"></div>
+          <input type="text" id="miniDishSearch1" class="mini-search-input" placeholder="🔍 Search Help Centre database...">
+          <div id="miniSearchDropdown1" class="mini-search-dropdown"></div>
         </div>
 
-        <div id="selectedBenchmarkDisplay" class="selected-benchmark-box">
+        <div class="selected-benchmark-box">
           <span class="bm-label">Selected Benchmark</span>
-          <div id="bmDishName" class="bm-dish-name">Custom (25%)</div>
+          <div id="bmDishName1" class="bm-dish-name">Custom (25%)</div>
         </div>
       </div>
     </div>
 
+    <!-- Side-by-Side Split Layout -->
     <div class="split-layout">
-      <div>
-        <div class="col-title">🍽️ Existing Dine-In Setup</div>
-        <div id="dineTopSummary" class="top-summary"></div>
+      <!-- Dine-In Left Column -->
+      <div class="column-box">
+        <div class="col-header-title">🍽️ Existing Dine-In Setup</div>
+        <div class="col-summary">
+          <div class="stat-tile profit" id="dineItemProfitTile">
+            <div class="lbl">Net Profit / Plate</div>
+            <div class="val" id="dineItemProfitVal">₹63</div>
+          </div>
+          <div class="stat-tile" id="dineItemMarginTile">
+            <div class="lbl">Net Margin</div>
+            <div class="val" id="dineItemMarginVal">21.0%</div>
+          </div>
+          <div class="stat-tile cost-tile">
+            <div class="lbl">Total Cost / Plate</div>
+            <div class="val" id="dineItemTotalCostVal">₹237</div>
+          </div>
+        </div>
+
+        <div id="itemDineCostList" class="cost-card-list"></div>
+        <button type="button" class="add-card-btn" id="addItemDineCostBtn">+ Add additional Cost</button>
       </div>
+
       <div class="split-divider"></div>
-      <div>
-        <div class="col-title">📦 New Zomato Orders</div>
-        <div id="zomTopSummary" class="top-summary"></div>
+
+      <!-- Zomato Right Column -->
+      <div class="column-box">
+        <div class="col-header-title">📦 New Zomato Orders</div>
+        <div class="col-summary">
+          <div class="stat-tile profit" id="zomItemProfitTile">
+            <div class="lbl">Net Profit / Plate</div>
+            <div class="val" id="zomItemProfitVal">₹83</div>
+          </div>
+          <div class="stat-tile profit" id="zomItemMarginTile">
+            <div class="lbl">Net Margin</div>
+            <div class="val" id="zomItemMarginVal">22.1%</div>
+          </div>
+          <div class="stat-tile cost-tile">
+            <div class="lbl">Total Cost / Plate</div>
+            <div class="val" id="zomItemTotalCostVal">₹292</div>
+          </div>
+        </div>
+
+        <div id="itemZomCostList" class="cost-card-list"></div>
+        <button type="button" class="add-card-btn" id="addItemZomCostBtn">+ Add additional Cost</button>
       </div>
     </div>
 
-    <div class="matched-rows" id="matchedRows"></div>
-
-    <div class="match-row" style="margin-top:10px;">
-      <div class="match-slot"><button type="button" class="add-card-btn" id="addDineCard">+ Add additional Cost</button></div>
-      <div class="match-divider"></div>
-      <div class="match-slot"><button type="button" class="add-card-btn" id="addZomCard">+ Add additional Cost</button></div>
-    </div>
-
-    <div class="split-divider-h"></div>
-
+    <!-- Incremental Profit Banner -->
     <div class="delta-card">
       <div class="lbl">Incremental profit from taking this dish onto Zomato</div>
-      <div class="val" id="deltaVal">₹0</div>
-      <div class="msg" id="deltaMsg">Adjust price, cards or the shared food cost — this updates live.</div>
+      <div class="val" id="itemDeltaVal">+₹20</div>
     </div>
   </section>
 
-  <!-- ================= PAGE 2: COMPARISON & HELP CENTRE ================= -->
-  <section class="page" id="page-compare">
+  <!-- ================= TAB 2: TAKE HOME PROFITABILITY ================= -->
+  <section class="page" id="page-takehome">
     <div class="page-header-row">
-      <h1 class="page-title">Help Centre</h1>
+      <h1 class="page-title">Take Home Profitability</h1>
+    </div>
+
+    <!-- Revenue & Settlement Section -->
+    <div class="grid-2">
+      <div class="card-box">
+        <label>Zomato Sales (Gross Billing)</label>
+        <div class="price-input-wrap">
+          <span>₹</span>
+          <input type="number" id="zomSalesInput" value="1000" min="0">
+        </div>
+      </div>
+
+      <div class="card-box">
+        <label>Avg Menu Hike / Markup %</label>
+        <div class="price-input-wrap">
+          <input type="number" id="takehomeMarkupInput" value="20" min="0">
+          <span>%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card-box" style="background:var(--blue-bg);border:1px solid var(--blue-border);">
+        <label style="color:var(--blue-text);">Equivalent Offline Menu Sales</label>
+        <div class="price-input-wrap" style="border-bottom-color:var(--blue-border);">
+          <span style="color:var(--blue-text);">₹</span>
+          <input type="text" id="equivOfflineSalesVal" value="₹833" readonly style="color:var(--blue-text);">
+        </div>
+      </div>
+
+      <div class="card-box">
+        <label>Zomato Net Payout (Bank Settlement)</label>
+        <div class="price-input-wrap">
+          <span>₹</span>
+          <input type="number" id="zomPayoutInput" value="700" min="0">
+        </div>
+      </div>
+    </div>
+
+    <!-- Shared Food Cost Card -->
+    <div class="shared-config">
+      <div class="shared-config-left">
+        <div class="shared-config-label">Food Cost is same for both calculators</div>
+        <div class="cost-card-top">
+          <div>
+            <div class="cost-name">Raw Material / Food Cost % <span style="font-weight:600;opacity:0.6;">(of Offline Sales)</span></div>
+          </div>
+        </div>
+
+        <div class="cost-controls">
+          <div class="stepper">
+            <button type="button" class="step-btn" id="takehomeRmDec">–</button>
+            <div class="input-pct-wrap">
+              <input type="number" class="pct-input" id="takehomeRmPctInput" value="25" min="0" max="100"><span class="pct-sign">%</span>
+            </div>
+            <button type="button" class="step-btn" id="takehomeRmInc">+</button>
+          </div>
+        </div>
+        <div class="cost-rupee">
+          <span class="amt" id="takehomeRmAmtVal">₹208</span>
+        </div>
+      </div>
+
+      <div class="shared-config-right">
+        <div class="mini-table-title">⚡ Food Cost Benchmarks</div>
+        
+        <div class="mini-search-wrap">
+          <input type="text" id="miniDishSearch2" class="mini-search-input" placeholder="🔍 Search Help Centre database...">
+          <div id="miniSearchDropdown2" class="mini-search-dropdown"></div>
+        </div>
+
+        <div class="selected-benchmark-box">
+          <span class="bm-label">Selected Benchmark</span>
+          <div id="bmDishName2" class="bm-dish-name">Custom (25%)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Take Home Split Layout (Side-by-Side 2 Columns) -->
+    <div class="takehome-split">
+      <!-- Left Column: Dine-In Setup & Costs -->
+      <div class="column-box">
+        <div class="col-header-title">🍽️ Existing Dine-In Setup</div>
+
+        <div class="col-summary">
+          <div class="stat-tile profit" id="dineProfitTile">
+            <div class="lbl">Dine-In Net Profit</div>
+            <div class="val" id="dineProfitVal">₹175</div>
+          </div>
+          <div class="stat-tile" id="dineMarginTile">
+            <div class="lbl">Dine-In Net Margin</div>
+            <div class="val" id="dineMarginVal">21.0%</div>
+          </div>
+          <div class="stat-tile cost-tile">
+            <div class="lbl">Dine-In Total Costs</div>
+            <div class="val" id="dineTotalCostVal">₹658</div>
+          </div>
+        </div>
+
+        <div id="takehomeDineCostList" class="cost-card-list"></div>
+        <button type="button" class="add-card-btn" id="addTakehomeDineCostBtn">+ Add additional Cost</button>
+      </div>
+
+      <div class="split-divider"></div>
+
+      <!-- Right Column: Zomato Orders & Costs -->
+      <div class="column-box">
+        <div class="col-header-title">📦 New Zomato Orders</div>
+
+        <div class="col-summary">
+          <div class="stat-tile profit" id="zomTakeHomeTile">
+            <div class="lbl">Zomato Net Profit</div>
+            <div class="val" id="zomNetProfitVal">₹416</div>
+          </div>
+          <div class="stat-tile profit" id="zomMarginTile">
+            <div class="lbl">Zomato Net Margin</div>
+            <div class="val" id="zomMarginPctVal">41.6%</div>
+          </div>
+          <div class="stat-tile cost-tile">
+            <div class="lbl">Zomato Direct Costs</div>
+            <div class="val" id="totalOpCostVal">₹284</div>
+          </div>
+        </div>
+
+        <div id="takehomeZomCostList" class="cost-card-list"></div>
+        <button type="button" class="add-card-btn" id="addTakehomeZomCostBtn">+ Add additional Cost</button>
+      </div>
+    </div>
+
+    <!-- Incremental Benefit Banner -->
+    <div class="delta-card">
+      <div class="lbl">Incremental Take-Home Cash Gain from Zomato Volume</div>
+      <div class="val" id="takehomeDeltaVal">+137.7% (+₹241)</div>
+    </div>
+  </section>
+
+  <!-- ================= TAB 3: HEY ZOOMAN (MERGED WITH HELP CENTRE) ================= -->
+  <section class="page" id="page-zooman">
+    <div class="page-header-row">
+      <h1 class="page-title">Hey Zooman &amp; Help Centre</h1>
+    </div>
+
+    <!-- Feedback Box -->
+    <div class="zooman-box">
+      <div class="zooman-logo">Z</div>
+      <p class="zooman-msg">Hey team! The beta version of the Calculator is ready. When you have a moment, please test it out and share your feedback on any bugs, flow issues, or improvements. Thanks!</p>
+      <a class="zooman-link" href="https://forms.gle/mM898wJLyssJ39Y39" target="_blank" rel="noopener">Share Your Feedback →</a>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="page-header-row" style="margin-top:24px;">
+      <h1 class="page-title" style="font-size:20px;">Dine-In vs. Zomato Cost Breakdown</h1>
     </div>
 
     <div class="compare-card">
@@ -610,8 +1015,8 @@
       </table>
     </div>
 
-    <!-- FULL Menu Items Table -->
-    <div class="page-header-row" style="margin-top:24px;">
+    <!-- FULL Menu Items Searchable Table -->
+    <div class="page-header-row" style="margin-top:28px;">
       <h1 class="page-title" style="font-size:20px;">Raw Material Cost % by Menu Item</h1>
     </div>
 
@@ -631,18 +1036,9 @@
     </div>
   </section>
 
-  <!-- ================= PAGE: HEY ZOOMAN ================= -->
-  <section class="page" id="page-zooman">
-    <div class="zooman-box">
-      <div class="zooman-logo">Z</div>
-      <p class="zooman-msg">Hey team! The beta version of the Calculator is ready. When you have a moment, please test it out and share your feedback on any bugs, flow issues, or improvements. Thanks!</p>
-      <a class="zooman-link" href="https://forms.gle/mM898wJLyssJ39Y39" target="_blank" rel="noopener">Share Your Feedback →</a>
-    </div>
-  </section>
-
 </div>
 
-<footer class="foot">Figures are illustrative — actual Zomato commission, ad spend, GST, energy and wastage rates vary by city, category and campaign.</footer>
+<footer class="foot">Margin Calculator Ver 9.6 — All calculations happen locally in real-time. Figures are illustrative.</footer>
 
 <script>
 /* ================= Database of Menu Items & Food Costs ================= */
@@ -687,399 +1083,555 @@ const DISH_DATABASE = [
 
 /* ================= Helpers ================= */
 function rupee(v){ return '₹' + Math.round(v).toLocaleString('en-IN'); }
-function trimPct(v){ return (Math.round(v*10)/10).toString(); }
 function clamp0(v){ v=parseFloat(v); return isNaN(v)?0:Math.max(0,v); }
 function clampPct(v){ v=parseFloat(v); if(isNaN(v))v=0; return Math.max(0,Math.min(100,v)); }
-function safe(it){ return it || { enabled:false, pct:0, valueFixed:0, valuePct:0, mode:'pct' }; }
 
-/* ================= State ================= */
-let pricing = { Poff:0, Pon:0, markup:0 };
+/* ================= Global Shared Food Cost State ================= */
+let globalFoodCostPct = 25;
 
-let dineItems = [
-  { id:'staff',  type:'pct',  name:'Staff & Salaries',          pct:25, enabled:true },
-  { id:'rent',   type:'pct',  name:'Rent & Electricity',        pct:15, enabled:true },
-  { id:'mkt',    type:'unit', name:'Marketing & Discounts',     mode:'pct', valueFixed:0, valuePct:2, enabled:true, baseLabel:'Offline Price' },
-  { id:'energy', type:'pct',  name:'Energy & Utilities',        pct:5,  enabled:true, hint:'Suggested range 3%–7%' },
-  { id:'wastage',type:'pct',  name:'Wastage Allowance',         pct:2,  enabled:true, hint:'Spoilage & prep-error' },
-  { id:'gst',    type:'pct',  name:'GST / Taxes',               pct:5,  enabled:true, hint:'GST applicable on billing' },
+/* ================= Tab 1 State: Single Item Margin Calculator ================= */
+let itemPricing = { Poff: 300, Pon: 360, markup: 20 };
+
+let itemDineCosts = [
+  { id: 'staff', name: 'Staff & Salaries', type: 'pct', mode: 'pct', pctVal: 25, fixedVal: 0, enabled: true },
+  { id: 'rent', name: 'Rent', type: 'pct', mode: 'pct', pctVal: 15, fixedVal: 0, enabled: true },
+  { id: 'mkt', name: 'Marketing', type: 'unit', mode: 'pct', pctVal: 2, fixedVal: 0, enabled: true },
+  { id: 'energy', name: 'Energy & Utilities', type: 'pct', mode: 'pct', pctVal: 5, fixedVal: 0, enabled: true },
+  { id: 'wastage', name: 'Wastage Allowance', type: 'pct', mode: 'pct', pctVal: 2, fixedVal: 0, enabled: true },
+  { id: 'gst', name: 'GST / Taxes', type: 'pct', mode: 'pct', pctVal: 5, fixedVal: 0, enabled: true }
 ];
 
-let zomItems = [
-  { id:'comm',   type:'pct',  name:'Zomato Commission',         pct:25, enabled:true },
-  { id:'disc',   type:'unit', name:'Discounts',                 mode:'pct', valueFixed:0, valuePct:0, enabled:true, baseLabel:'Online Price' },
-  { id:'ads',    type:'pct',  name:'Ads/Marketing',             pct:10, enabled:true },
-  { id:'energy', type:'pct',  name:'Energy & Utilities',        pct:5,  enabled:true, hint:'Suggested range 3%–7%' },
-  { id:'wastage',type:'pct',  name:'Wastage Allowance',         pct:2,  enabled:true, hint:'Charged on offline price' },
-  { id:'gst',    type:'pct',  name:'GST / Taxes',                pct:5,  enabled:true },
-  { id:'pack',   type:'unit', name:'Packaging Cost',            mode:'pct', valueFixed:15, valuePct:5, enabled:true, baseLabel:'Online Price' },
+let itemZomCosts = [
+  { id: 'comm', name: 'Zomato Commission', type: 'pct', mode: 'pct', pctVal: 25, fixedVal: 0, enabled: true },
+  { id: 'disc', name: 'Discounts', type: 'unit', mode: 'pct', pctVal: 0, fixedVal: 0, enabled: true },
+  { id: 'ads', name: 'Ads/Marketing', type: 'pct', mode: 'pct', pctVal: 10, fixedVal: 0, enabled: true },
+  { id: 'energy', name: 'Energy & Utilities', type: 'pct', mode: 'pct', pctVal: 5, fixedVal: 0, enabled: true },
+  { id: 'wastage', name: 'Wastage Allowance', type: 'pct', mode: 'pct', pctVal: 2, fixedVal: 0, enabled: true },
+  { id: 'gst', name: 'GST / Taxes', type: 'pct', mode: 'pct', pctVal: 5, fixedVal: 0, enabled: true },
+  { id: 'pack', name: 'Packaging Cost', type: 'unit', mode: 'pct', pctVal: 5, fixedVal: 15, enabled: true }
 ];
 
-let sharedFC = { pct:25, enabled:true };
+/* ================= Tab 2 State: Take Home Profitability ================= */
+let takehomeState = {
+  zomSales: 1000,
+  markupPct: 20,
+  zomPayout: 700,
 
-/* ================= Engine ================= */
-function computeDine(){
-  const Poff = pricing.Poff;
-  let totalCost = 0;
+  dineItems: [
+    { id: 'staff', name: 'Staff & Salaries', type: 'pct', mode: 'pct', pctVal: 25, fixedVal: 0, enabled: true },
+    { id: 'rent', name: 'Rent', type: 'pct', mode: 'pct', pctVal: 15, fixedVal: 0, enabled: true },
+    { id: 'mkt', name: 'Marketing', type: 'unit', mode: 'pct', pctVal: 2, fixedVal: 0, enabled: true },
+    { id: 'energy', name: 'Energy & Utilities', type: 'pct', mode: 'pct', pctVal: 5, fixedVal: 0, enabled: true },
+    { id: 'wastage', name: 'Wastage Allowance', type: 'pct', mode: 'pct', pctVal: 2, fixedVal: 0, enabled: true },
+    { id: 'gst', name: 'GST / Taxes', type: 'pct', mode: 'pct', pctVal: 5, fixedVal: 0, enabled: true }
+  ],
 
-  dineItems.forEach(it => {
-    if(!it.enabled) return;
-    if(it.type === 'pct'){
-      totalCost += Poff * (it.pct / 100);
+  zomItems: [
+    { id: 'pack', name: 'Packaging Cost', type: 'unit', mode: 'pct', pctVal: 2, fixedVal: 20, enabled: true },
+    { id: 'energy', name: 'Energy & Utilities', type: 'pct', mode: 'pct', pctVal: 5, fixedVal: 42, enabled: true },
+    { id: 'wastage', name: 'Wastage Allowance', type: 'pct', mode: 'pct', pctVal: 2, fixedVal: 17, enabled: true },
+    { id: 'inc_inv', name: 'Incremental investments', type: 'unit', mode: 'pct', pctVal: 5, fixedVal: 0, enabled: false }
+  ]
+};
+
+/* ================= ENGINE: TAB 1 (SINGLE ITEM MARGINS) ================= */
+function calculateItemMargin(){
+  const Poff = itemPricing.Poff;
+  const Pon = itemPricing.Pon;
+  const fcAmt = Poff * (globalFoodCostPct / 100);
+
+  // Dine-In Calculations
+  let totalDineOpCost = 0;
+  itemDineCosts.forEach(item => {
+    if(!item.enabled) return;
+    let amt = 0;
+    if(item.type === 'pct'){
+      amt = Poff * (item.pctVal / 100);
     } else {
-      totalCost += (it.mode === 'fixed' ? it.valueFixed : Poff * (it.valuePct / 100));
+      amt = item.mode === 'fixed' ? item.fixedVal : Poff * (item.pctVal / 100);
     }
+    item._calcAmt = amt;
+    totalDineOpCost += amt;
   });
 
-  const fcAmt = sharedFC.enabled ? Poff * (sharedFC.pct / 100) : 0;
-  totalCost += fcAmt;
+  const totalDineCost = fcAmt + totalDineOpCost;
+  const dineNetProfit = Poff - totalDineCost;
+  const dineNetMargin = Poff > 0 ? (dineNetProfit / Poff) * 100 : 0;
 
-  const netProfit = Poff - totalCost;
-  const netMarginPct = Poff !== 0 ? (netProfit / Poff) * 100 : 0;
+  // Zomato Calculations
+  const packCard = itemZomCosts.find(x => x.id === 'pack');
+  const discCard = itemZomCosts.find(x => x.id === 'disc');
 
-  return { Poff, fcAmt, totalCost, netProfit, netMarginPct };
-}
-
-function computeZomato(){
-  const Poff = pricing.Poff, Pon = pricing.Pon;
-  
-  const pack = safe(zomItems.find(x=>x.id==='pack'));
-  const disc = safe(zomItems.find(x=>x.id==='disc'));
-
-  const packAmt = pack.enabled ? (pack.mode==='fixed' ? pack.valueFixed : Pon*(pack.valuePct/100)) : 0;
-  const discAmt = disc.enabled ? (disc.mode==='fixed' ? disc.valueFixed : Pon*(disc.valuePct/100)) : 0;
+  const packAmt = packCard && packCard.enabled ? (packCard.mode === 'fixed' ? packCard.fixedVal : Pon * (packCard.pctVal / 100)) : 0;
+  const discAmt = discCard && discCard.enabled ? (discCard.mode === 'fixed' ? discCard.fixedVal : Pon * (discCard.pctVal / 100)) : 0;
 
   const CV = Pon + packAmt - discAmt;
 
-  let zomItemSum = 0;
-  zomItems.forEach(it => {
-    if(!it.enabled) return;
-    if(it.id === 'pack'){
-      zomItemSum += packAmt;
-    } else if(it.id === 'disc'){
-      zomItemSum += discAmt;
-    } else if(it.id === 'wastage'){
-      zomItemSum += Poff * (it.pct / 100);
+  let zomDeductions = 0;
+  itemZomCosts.forEach(item => {
+    if(!item.enabled) return;
+    if(item.id === 'pack'){
+      item._calcAmt = packAmt;
+    } else if(item.id === 'disc'){
+      item._calcAmt = discAmt;
+    } else if(item.id === 'wastage'){
+      const amt = Poff * (item.pctVal / 100);
+      item._calcAmt = amt;
+      zomDeductions += amt;
     } else {
-      if(it.type === 'pct'){
-        zomItemSum += CV * (it.pct / 100);
+      let amt = 0;
+      if(item.type === 'pct'){
+        amt = CV * (item.pctVal / 100);
       } else {
-        zomItemSum += (it.mode === 'fixed' ? it.valueFixed : CV * (it.valuePct / 100));
+        amt = item.mode === 'fixed' ? item.fixedVal : CV * (item.pctVal / 100);
       }
+      item._calcAmt = amt;
+      zomDeductions += amt;
     }
   });
 
-  const fcAmt = sharedFC.enabled ? Poff * (sharedFC.pct / 100) : 0;
-  const totalCost = fcAmt + zomItemSum;
-  const netProfit = (Pon + packAmt) - totalCost;
-  const netMarginPct = CV !== 0 ? (netProfit / CV) * 100 : 0;
+  const totalZomCost = fcAmt + packAmt + discAmt + zomDeductions;
+  const zomNetProfit = (Pon + packAmt) - totalZomCost;
+  const zomNetMargin = CV > 0 ? (zomNetProfit / CV) * 100 : 0;
 
-  return { Poff, Pon, CV, packAmt, discAmt, fcAmt, totalCost, netProfit, netMarginPct };
+  const deltaProfit = zomNetProfit - dineNetProfit;
+
+  return {
+    Poff, Pon, CV, fcAmt,
+    totalDineCost, dineNetProfit, dineNetMargin,
+    totalZomCost, zomNetProfit, zomNetMargin,
+    deltaProfit
+  };
 }
 
-/* ================= Non-Destructive DOM Recalculation ================= */
-function recalcOnly(){
-  const d = computeDine(), z = computeZomato();
+function updateItemUI(){
+  const res = calculateItemMargin();
 
-  dineItems.forEach(it=>{ it._base = pricing.Poff; });
-  zomItems.forEach(it=>{
-    if(it.id==='pack' || it.id==='disc') it._base = pricing.Pon;
-    else it._base = z.CV;
+  document.getElementById('itemRmAmtVal').textContent = rupee(res.fcAmt);
+
+  // Dine-In UI Updates
+  itemDineCosts.forEach(item => {
+    const el = document.querySelector(`[data-card-id="itemDine-${item.id}"] .cost-rupee .amt`);
+    if(el) el.textContent = item.enabled ? rupee(item._calcAmt || 0) : '—';
   });
 
-  renderTopSummaries(d, z);
-  updateCardAmounts();
-  renderSharedFC();
-  renderDelta();
+  document.getElementById('dineItemProfitVal').textContent = rupee(res.dineNetProfit);
+  document.getElementById('dineItemMarginVal').textContent = res.dineNetMargin.toFixed(1) + '%';
+  document.getElementById('dineItemTotalCostVal').textContent = rupee(res.totalDineCost);
+
+  // Zomato UI Updates
+  itemZomCosts.forEach(item => {
+    const el = document.querySelector(`[data-card-id="itemZom-${item.id}"] .cost-rupee .amt`);
+    if(el) el.textContent = item.enabled ? rupee(item._calcAmt || 0) : '—';
+  });
+
+  document.getElementById('zomItemProfitVal').textContent = rupee(res.zomNetProfit);
+  document.getElementById('zomItemMarginVal').textContent = res.zomNetMargin.toFixed(1) + '%';
+  document.getElementById('zomItemTotalCostVal').textContent = rupee(res.totalZomCost);
+
+  const deltaEl = document.getElementById('itemDeltaVal');
+  deltaEl.textContent = (res.deltaProfit >= 0 ? '+' : '') + rupee(res.deltaProfit);
+  deltaEl.className = res.deltaProfit >= 0 ? 'val' : 'val loss';
+
+  document.getElementById('dineItemProfitTile').classList.toggle('loss', res.dineNetProfit < 0);
+  document.getElementById('zomItemProfitTile').classList.toggle('loss', res.zomNetProfit < 0);
+  document.getElementById('zomItemMarginTile').classList.toggle('loss', res.zomNetMargin < 0);
 }
 
-function updateCardAmounts(){
-  dineItems.forEach(item => {
-    const el = document.querySelector(`[data-id="dine-${item.id}"]`);
-    if(el){
-      const amtEl = el.querySelector('.cost-rupee .amt');
-      if(amtEl){
-        if(!item.enabled){
-          amtEl.textContent = '—';
-        } else {
-          const isFixed = item.mode === 'fixed';
-          const amt = item.type === 'pct'
-            ? item._base * (item.pct / 100)
-            : (isFixed ? item.valueFixed : item._base * (item.valuePct / 100));
-          amtEl.textContent = rupee(amt);
-        }
-      }
+/* ================= ENGINE: TAB 2 (TAKE HOME PROFITABILITY) ================= */
+function calculateTakeHome(){
+  const zomSales = takehomeState.zomSales;
+  const markup = takehomeState.markupPct;
+  
+  const equivOfflineSales = markup > 0 ? zomSales / (1 + (markup / 100)) : zomSales;
+  const fcCost = equivOfflineSales * (globalFoodCostPct / 100);
+
+  // Dine-In Total Operating Costs
+  let totalDineOpCost = 0;
+  takehomeState.dineItems.forEach(item => {
+    if(!item.enabled) return;
+    let amt = 0;
+    if(item.type === 'pct'){
+      amt = equivOfflineSales * (item.pctVal / 100);
+    } else {
+      amt = item.mode === 'fixed' ? item.fixedVal : equivOfflineSales * (item.pctVal / 100);
     }
+    item._calcAmt = amt;
+    totalDineOpCost += amt;
   });
 
-  zomItems.forEach(item => {
-    const el = document.querySelector(`[data-id="zom-${item.id}"]`);
-    if(el){
-      const amtEl = el.querySelector('.cost-rupee .amt');
-      if(amtEl){
-        if(!item.enabled){
-          amtEl.textContent = '—';
-        } else {
-          const isFixed = item.mode === 'fixed';
-          const amt = item.type === 'pct'
-            ? item._base * (item.pct / 100)
-            : (isFixed ? item.valueFixed : item._base * (item.valuePct / 100));
-          amtEl.textContent = rupee(amt);
-        }
-      }
+  const totalDineCost = fcCost + totalDineOpCost;
+  const dineNetProfit = equivOfflineSales - totalDineCost;
+  const dineNetMargin = equivOfflineSales > 0 ? (dineNetProfit / equivOfflineSales) * 100 : 0;
+
+  // Zomato Direct Operating Costs = Packaging + Energy + Wastage + Incremental Investments (if enabled)
+  let zomDirectOpCost = 0;
+  takehomeState.zomItems.forEach(item => {
+    if(!item.enabled) return;
+    let amt = 0;
+    if(item.type === 'pct'){
+      amt = equivOfflineSales * (item.pctVal / 100);
+    } else {
+      amt = item.mode === 'fixed' ? item.fixedVal : equivOfflineSales * (item.pctVal / 100);
     }
+    item._calcAmt = amt;
+    zomDirectOpCost += amt;
   });
+
+  const totalZomOpCost = fcCost + zomDirectOpCost;
+  
+  // Zomato Net Profit = Payouts - Total Operating Costs (Food Cost + Direct Costs)
+  const zomNetProfit = takehomeState.zomPayout - totalZomOpCost;
+  const zomMarginPct = zomSales > 0 ? (zomNetProfit / zomSales) * 100 : 0;
+
+  const deltaCash = zomNetProfit - dineNetProfit;
+  const pctGain = dineNetProfit !== 0 ? ((deltaCash / Math.abs(dineNetProfit)) * 100) : 0;
+
+  return {
+    equivOfflineSales, fcCost,
+    totalDineCost, dineNetProfit, dineNetMargin,
+    totalZomOpCost, zomNetProfit, zomMarginPct,
+    deltaCash, pctGain
+  };
 }
 
-/* ================= Card rendering (Structure Only) ================= */
-function pctCardHTML(item, side){
-  const amt = item.enabled ? (item._base * (item.pct/100)) : 0;
+function updateTakehomeUI(){
+  const res = calculateTakeHome();
+
+  document.getElementById('equivOfflineSalesVal').value = rupee(res.equivOfflineSales);
+  document.getElementById('takehomeRmAmtVal').textContent = rupee(res.fcCost);
+
+  takehomeState.dineItems.forEach(item => {
+    const el = document.querySelector(`[data-card-id="takehomeDine-${item.id}"] .cost-rupee .amt`);
+    if(el) el.textContent = item.enabled ? rupee(item._calcAmt || 0) : '—';
+  });
+
+  takehomeState.zomItems.forEach(item => {
+    const el = document.querySelector(`[data-card-id="takehomeZom-${item.id}"] .cost-rupee .amt`);
+    if(el) el.textContent = item.enabled ? rupee(item._calcAmt || 0) : '—';
+  });
+
+  document.getElementById('zomNetProfitVal').textContent = rupee(res.zomNetProfit);
+  document.getElementById('zomMarginPctVal').textContent = res.zomMarginPct.toFixed(1) + '%';
+  document.getElementById('totalOpCostVal').textContent = rupee(res.totalZomOpCost);
+
+  document.getElementById('dineProfitVal').textContent = rupee(res.dineNetProfit);
+  document.getElementById('dineMarginVal').textContent = res.dineNetMargin.toFixed(1) + '%';
+  document.getElementById('dineTotalCostVal').textContent = rupee(res.totalDineCost);
+
+  const deltaVal = document.getElementById('takehomeDeltaVal');
+  if(res.deltaCash >= 0) {
+    deltaVal.textContent = `+${res.pctGain.toFixed(1)}% (+${rupee(res.deltaCash)})`;
+    deltaVal.className = 'val';
+  } else {
+    deltaVal.textContent = `${res.pctGain.toFixed(1)}%`;
+    deltaVal.className = 'val loss';
+  }
+
+  document.getElementById('zomTakeHomeTile').classList.toggle('loss', res.zomNetProfit < 0);
+  document.getElementById('zomMarginTile').classList.toggle('loss', res.zomNetProfit < 0);
+  document.getElementById('dineProfitTile').classList.toggle('loss', res.dineNetProfit < 0);
+}
+
+/* ================= EXACT SCREENSHOT CARD DESIGN RENDERER ================= */
+function renderCardHTML(item, sidePrefix){
+  const isFixed = item.mode === 'fixed';
   const isBlue = item.enabled;
-  return `
-  <div class="cost-card ${item.enabled?'':'disabled'} ${item.isNew?'new':''}" data-id="${side}-${item.id}">
-    <div class="cost-card-top">
-      <div>
-        ${item.isEditable 
-          ? `<input type="text" class="cost-name-input" data-act="rename" value="${item.name}">` 
-          : `<div class="cost-name">${item.name}</div>`}
-        ${item.hint?`<div class="cost-hint">${item.hint}</div>`:''}
-      </div>
-      <div class="cost-actions">
-        <label class="switch"><input type="checkbox" data-act="toggle" ${item.enabled?'checked':''}><span class="slider-track"></span></label>
-        <button class="trash-btn" data-act="remove" title="Remove">✕</button>
-      </div>
-    </div>
-    <div class="cost-mid-row">
-      <div class="cost-controls">
-        <div class="stepper">
-          <button type="button" class="step-btn" data-act="dec">–</button>
-          <input type="number" class="pct-input" data-act="pct" value="${item.pct}" min="0" max="100">
-          <button type="button" class="step-btn" data-act="inc">+</button>
-        </div>
-        <span class="pct-sign">%</span>
-      </div>
-    </div>
-    <div class="cost-rupee">
-      <span>${item.enabled?'Deducted':'Excluded'}</span>
-      <span class="amt ${isBlue?'pct-blue':''}">${item.enabled?rupee(amt):'—'}</span>
-    </div>
-  </div>`;
-}
 
-function unitCardHTML(item, side){
-  const isFixed = item.mode==='fixed';
-  const amt = item.enabled ? (isFixed ? item.valueFixed : item._base*(item.valuePct/100)) : 0;
-  const isBlue = item.enabled && !isFixed;
   return `
-  <div class="cost-card ${item.enabled?'':'disabled'} ${item.isNew?'new':''}" data-id="${side}-${item.id}">
+  <div class="cost-card ${item.enabled ? '' : 'disabled'}" data-card-id="${sidePrefix}-${item.id}">
+    <!-- Top Row: Title Left, On/Off Switch Right -->
     <div class="cost-card-top">
-      ${item.isEditable 
-        ? `<input type="text" class="cost-name-input" data-act="rename" value="${item.name}">` 
-        : `<div class="cost-name">${item.name}</div>`}
+      <div class="cost-name">
+        ${item.isCustom 
+          ? `<input type="text" class="cost-name-input" data-act="rename" value="${item.name}">`
+          : item.name}
+      </div>
       <div class="cost-actions">
-        <label class="switch"><input type="checkbox" data-act="toggle" ${item.enabled?'checked':''}><span class="slider-track"></span></label>
-        <button class="trash-btn" data-act="remove" title="Remove">✕</button>
+        <label class="switch">
+          <input type="checkbox" data-act="toggle" ${item.enabled ? 'checked' : ''}>
+          <span class="slider-track"></span>
+        </label>
+        ${item.isCustom ? `<button class="trash-btn" data-act="remove">✕</button>` : ''}
       </div>
     </div>
-    <div class="cost-mid-row">
+    
+    <!-- Bottom Row: Stepper + Toggle Left, Blue Amount Right -->
+    <div class="cost-card-bottom">
       <div class="cost-controls">
         ${isFixed
-          ? `<div class="money-input-wrap"><span>₹</span><input type="number" class="money-input" data-act="fixedVal" value="${item.valueFixed}" min="0"></div>`
-          : `<div class="stepper"><button type="button" class="step-btn" data-act="dec">–</button><input type="number" class="pct-input" data-act="pctVal" value="${item.valuePct}" min="0" max="100"><button type="button" class="step-btn" data-act="inc">+</button></div><span class="pct-sign">%</span>`
+          ? `<div class="money-input-wrap"><span>₹</span><input type="number" class="money-input" data-act="fixedVal" value="${item.fixedVal}" min="0"></div>`
+          : `<div class="stepper">
+              <button type="button" class="step-btn" data-act="dec">–</button>
+              <div class="input-pct-wrap">
+                <input type="number" class="pct-input" data-act="pctVal" value="${item.pctVal}" min="0" max="100"><span class="pct-sign">%</span>
+              </div>
+              <button type="button" class="step-btn" data-act="inc">+</button>
+             </div>`
         }
+        ${item.type === 'unit' ? `
+          <div class="unit-toggle">
+            <button type="button" data-act="mode" data-mode="pct" class="${!isFixed ? 'active' : ''}">% Off</button>
+            <button type="button" data-act="mode" data-mode="fixed" class="${isFixed ? 'active' : ''}">₹ Fix</button>
+          </div>` : ''}
       </div>
-      <div class="unit-toggle">
-        <button type="button" data-act="mode" data-mode="fixed" class="${isFixed?'active':''}">₹ Fixed</button>
-        <button type="button" data-act="mode" data-mode="pct" class="${!isFixed?'active':''}">% of ${item.baseLabel||'Price'}</button>
+
+      <div class="cost-rupee">
+        <span class="amt ${isBlue ? 'pct-blue' : ''}">${item.enabled ? rupee(item._calcAmt || 0) : '—'}</span>
       </div>
-    </div>
-    <div class="cost-rupee">
-      <span>${item.enabled?'Deducted':'Excluded'}</span>
-      <span class="amt ${isBlue?'pct-blue':''}">${item.enabled?rupee(amt):'—'}</span>
     </div>
   </div>`;
 }
 
-function cardHTML(item, side){
-  return item.type==='pct' ? pctCardHTML(item, side) : unitCardHTML(item, side);
-}
-
-function wireCard(container, item, side, onDirtyFull){
-  const el = container.querySelector(`[data-id="${side}-${item.id}"]`);
+function wireCardEvents(container, item, sidePrefix, updateFn, itemsArray){
+  const el = container.querySelector(`[data-card-id="${sidePrefix}-${item.id}"]`);
   if(!el) return;
-  
+
   const toggle = el.querySelector('[data-act="toggle"]');
-  toggle.addEventListener('change', ()=>{
-    item.enabled = toggle.checked;
-    el.classList.toggle('disabled', !item.enabled);
-    recalcOnly();
-  });
-  
-  el.querySelector('[data-act="remove"]').addEventListener('click', ()=>{
-    item.enabled = false; item._removed = true; onDirtyFull();
-  });
+  if(toggle){
+    toggle.addEventListener('change', () => {
+      item.enabled = toggle.checked;
+      el.classList.toggle('disabled', !item.enabled);
+      updateFn();
+    });
+  }
+
+  const removeBtn = el.querySelector('[data-act="remove"]');
+  if(removeBtn){
+    removeBtn.addEventListener('click', () => {
+      const idx = itemsArray.findIndex(x => x.id === item.id);
+      if(idx > -1) itemsArray.splice(idx, 1);
+      renderAllSystemCards();
+      updateAllUI();
+    });
+  }
 
   const renameInput = el.querySelector('[data-act="rename"]');
   if(renameInput){
-    renameInput.addEventListener('input', ()=>{ item.name = renameInput.value; });
+    renameInput.addEventListener('input', () => { item.name = renameInput.value; });
   }
 
-  if(item.type==='pct'){
-    const input = el.querySelector('[data-act="pct"]');
-    input.addEventListener('input', ()=>{ item.pct = clampPct(input.value); recalcOnly(); });
-    el.querySelector('[data-act="dec"]').addEventListener('click', ()=>{ item.pct = clampPct(item.pct-1); input.value = item.pct; recalcOnly(); });
-    el.querySelector('[data-act="inc"]').addEventListener('click', ()=>{ item.pct = clampPct(item.pct+1); input.value = item.pct; recalcOnly(); });
-  } else {
-    el.querySelectorAll('[data-act="mode"]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{ item.mode = btn.dataset.mode; onDirtyFull(); });
+  const modeBtns = el.querySelectorAll('[data-act="mode"]');
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      item.mode = btn.dataset.mode;
+      renderAllSystemCards();
+      updateAllUI();
     });
-    const fixedInput = el.querySelector('[data-act="fixedVal"]');
-    if(fixedInput) fixedInput.addEventListener('input', ()=>{ item.valueFixed = clamp0(fixedInput.value); recalcOnly(); });
-    const pctInput = el.querySelector('[data-act="pctVal"]');
-    if(pctInput){
-      pctInput.addEventListener('input', ()=>{ item.valuePct = clampPct(pctInput.value); recalcOnly(); });
-      const decBtn = el.querySelector('[data-act="dec"]');
-      const incBtn = el.querySelector('[data-act="inc"]');
-      if(decBtn) decBtn.addEventListener('click', ()=>{ item.valuePct = clampPct(item.valuePct-1); pctInput.value = item.valuePct; recalcOnly(); });
-      if(incBtn) incBtn.addEventListener('click', ()=>{ item.valuePct = clampPct(item.valuePct+1); pctInput.value = item.valuePct; recalcOnly(); });
-    }
-  }
-}
-
-function statTile(lbl,val,opts){
-  opts = opts||{};
-  let cls = 'stat-tile';
-  if(opts.profit) cls += ' profit' + (opts.loss ? ' loss' : '');
-  if(opts.cost) cls += ' cost-tile';
-  return `<div class="${cls}"><div class="lbl">${lbl}</div><div class="val">${val}</div></div>`;
-}
-
-function buildRows(){
-  const rows = [];
-  const maxLen = Math.max(dineItems.length, zomItems.length);
-  for(let i = 0; i < maxLen; i++){
-    rows.push({
-      dine: dineItems[i] || null,
-      zom: zomItems[i] || null
-    });
-  }
-  return rows;
-}
-
-function renderTopSummaries(d, z){
-  const dLoss = d.netProfit < 0;
-  document.getElementById('dineTopSummary').innerHTML =
-    statTile('Net Margin', trimPct(d.netMarginPct)+'%', {profit:true, loss:dLoss}) +
-    statTile('Net Profit / Plate', rupee(d.netProfit), {profit:true, loss:dLoss}) +
-    statTile('Total Cost / Plate', rupee(d.totalCost), {cost:true});
-
-  const zLoss = z.netProfit < 0;
-  document.getElementById('zomTopSummary').innerHTML =
-    statTile('Net Margin', trimPct(z.netMarginPct)+'%', {profit:true, loss:zLoss}) +
-    statTile('Net Profit / Plate', rupee(z.netProfit), {profit:true, loss:zLoss}) +
-    statTile('Total Cost / Plate', rupee(z.totalCost), {cost:true}) +
-    statTile('Comm. Value', rupee(z.CV));
-}
-
-function renderMatchedRows(){
-  const rows = buildRows();
-  const container = document.getElementById('matchedRows');
-  container.innerHTML = rows.map(r=>{
-    const leftHTML = r.dine ? cardHTML(r.dine, 'dine') : `<div class="empty-slot"></div>`;
-    const rightHTML = r.zom ? cardHTML(r.zom, 'zom') : `<div class="empty-slot"></div>`;
-    return `<div class="match-row"><div class="match-slot">${leftHTML}</div><div class="match-divider"></div><div class="match-slot">${rightHTML}</div></div>`;
-  }).join('');
-  
-  rows.forEach(r=>{
-    if(r.dine) wireCard(container, r.dine, 'dine', fullRender);
-    if(r.zom) wireCard(container, r.zom, 'zom', fullRender);
-  });
-}
-
-function renderSharedFC(){
-  document.getElementById('fcEnabled').checked = sharedFC.enabled;
-  document.getElementById('fcPct').value = sharedFC.pct;
-  const amt = sharedFC.enabled ? pricing.Poff*(sharedFC.pct/100) : 0;
-  document.getElementById('fcAmountVal').textContent = sharedFC.enabled ? rupee(amt) : '—';
-}
-
-function renderDelta(){
-  const d = computeDine(), z = computeZomato();
-  const diff = z.netProfit - d.netProfit;
-  const deltaVal = document.getElementById('deltaVal');
-  const deltaMsg = document.getElementById('deltaMsg');
-  deltaVal.textContent = (diff>=0?'+':'') + rupee(diff);
-  deltaVal.classList.toggle('loss', diff<0);
-  deltaMsg.textContent = diff>=0
-    ? 'Taking this dish onto Zomato adds pure incremental profit per plate on top of dine-in.'
-    : 'At current settings, the Zomato version is less profitable than dine-in — revisit rates.';
-}
-
-function fullRender(){
-  const d = computeDine(), z = computeZomato();
-
-  dineItems = dineItems.filter(it=>!it._removed);
-  dineItems.forEach(it=>{ it._base = pricing.Poff; });
-
-  zomItems = zomItems.filter(it=>!it._removed);
-  zomItems.forEach(it=>{
-    if(it.id==='pack' || it.id==='disc') it._base = pricing.Pon;
-    else it._base = z.CV;
   });
 
-  renderTopSummaries(d, z);
-  renderMatchedRows();
-  renderSharedFC();
-  renderDelta();
+  const fixedInput = el.querySelector('[data-act="fixedVal"]');
+  if(fixedInput){
+    fixedInput.addEventListener('input', () => {
+      item.fixedVal = clamp0(fixedInput.value);
+      updateFn();
+    });
+  }
+
+  const pctInput = el.querySelector('[data-act="pctVal"]');
+  if(pctInput){
+    pctInput.addEventListener('input', () => {
+      item.pctVal = clampPct(pctInput.value);
+      updateFn();
+    });
+  }
+
+  const decBtn = el.querySelector('[data-act="dec"]');
+  if(decBtn){
+    decBtn.addEventListener('click', () => {
+      item.pctVal = clampPct(item.pctVal - 1);
+      if(pctInput) pctInput.value = item.pctVal;
+      updateFn();
+    });
+  }
+
+  const incBtn = el.querySelector('[data-act="inc"]');
+  if(incBtn){
+    incBtn.addEventListener('click', () => {
+      item.pctVal = clampPct(item.pctVal + 1);
+      if(pctInput) pctInput.value = item.pctVal;
+      updateFn();
+    });
+  }
 }
 
-function applyDishPct(pct){
-  sharedFC.pct = pct;
-  sharedFC.enabled = true;
-  recalcOnly();
+function renderAllSystemCards(){
+  // Tab 1 Cards
+  const itemDineList = document.getElementById('itemDineCostList');
+  const itemZomList = document.getElementById('itemZomCostList');
+  itemDineList.innerHTML = itemDineCosts.map(it => renderCardHTML(it, 'itemDine')).join('');
+  itemZomList.innerHTML = itemZomCosts.map(it => renderCardHTML(it, 'itemZom')).join('');
+  itemDineCosts.forEach(it => wireCardEvents(itemDineList, it, 'itemDine', updateItemUI, itemDineCosts));
+  itemZomCosts.forEach(it => wireCardEvents(itemZomList, it, 'itemZom', updateItemUI, itemZomCosts));
+
+  // Tab 2 Cards
+  const takehomeDineList = document.getElementById('takehomeDineCostList');
+  const takehomeZomList = document.getElementById('takehomeZomCostList');
+  takehomeDineList.innerHTML = takehomeState.dineItems.map(it => renderCardHTML(it, 'takehomeDine')).join('');
+  takehomeZomList.innerHTML = takehomeState.zomItems.map(it => renderCardHTML(it, 'takehomeZom')).join('');
+  takehomeState.dineItems.forEach(it => wireCardEvents(takehomeDineList, it, 'takehomeDine', updateTakehomeUI, takehomeState.dineItems));
+  takehomeState.zomItems.forEach(it => wireCardEvents(takehomeZomList, it, 'takehomeZom', updateTakehomeUI, takehomeState.zomItems));
 }
 
-/* ================= Mini Search Bar Logic ================= */
-const miniSearchInput = document.getElementById('miniDishSearch');
-const miniDropdown = document.getElementById('miniSearchDropdown');
+function updateAllUI(){
+  updateItemUI();
+  updateTakehomeUI();
+}
 
-miniSearchInput.addEventListener('input', (e) => {
-  const val = e.target.value.trim().toLowerCase();
-  if(!val) {
-    miniDropdown.style.display = 'none';
-    return;
-  }
-  const matches = DISH_DATABASE.filter(d => 
-    d.name.toLowerCase().includes(val) || d.cat.toLowerCase().includes(val)
-  );
-  if(matches.length === 0){
-    miniDropdown.innerHTML = `<div style="padding:6px;opacity:0.6;text-align:center;">No matches found</div>`;
-  } else {
-    miniDropdown.innerHTML = matches.map(d => {
-      const color = d.isVeg ? '#1E8449' : '#B3341F';
-      const badge = d.isVeg ? '🟢' : '🔴';
-      return `<div class="mini-search-item" onclick="selectMiniDish(${d.pct}, '${d.name.replace(/'/g, "\\'")}', ${d.isVeg})">
-        <strong style="color:${color};">${badge} ${d.name}</strong> (${d.cat}) — <span style="color:var(--crimson);font-weight:800;">${d.pct}%</span>
-      </div>`;
-    }).join('');
-  }
-  miniDropdown.style.display = 'block';
+/* ================= TAB 1 PRICING LISTENERS ================= */
+const poffInput = document.getElementById('poffInput');
+const markupInput = document.getElementById('markupInput');
+const ponInput = document.getElementById('ponInput');
+
+poffInput.addEventListener('input', ()=>{
+  itemPricing.Poff = clamp0(poffInput.value);
+  itemPricing.Pon = Math.round(itemPricing.Poff*(1+itemPricing.markup/100)*100)/100;
+  ponInput.value = itemPricing.Pon;
+  updateItemUI();
+});
+markupInput.addEventListener('input', ()=>{
+  itemPricing.markup = parseFloat(markupInput.value)||0;
+  itemPricing.Pon = Math.round(itemPricing.Poff*(1+itemPricing.markup/100)*100)/100;
+  ponInput.value = itemPricing.Pon;
+  updateItemUI();
+});
+ponInput.addEventListener('input', ()=>{
+  itemPricing.Pon = clamp0(ponInput.value);
+  itemPricing.markup = itemPricing.Poff>0 ? Math.round(((itemPricing.Pon-itemPricing.Poff)/itemPricing.Poff)*100*100)/100 : 0;
+  markupInput.value = itemPricing.markup;
+  updateItemUI();
 });
 
-function selectMiniDish(pct, name, isVeg){
-  applyDishPct(pct);
+/* ================= TAB 2 TAKE HOME LISTENERS ================= */
+document.getElementById('zomSalesInput').addEventListener('input', (e)=>{
+  takehomeState.zomSales = clamp0(e.target.value);
+  updateTakehomeUI();
+});
+document.getElementById('takehomeMarkupInput').addEventListener('input', (e)=>{
+  takehomeState.markupPct = clamp0(e.target.value);
+  updateTakehomeUI();
+});
+document.getElementById('zomPayoutInput').addEventListener('input', (e)=>{
+  takehomeState.zomPayout = clamp0(e.target.value);
+  updateTakehomeUI();
+});
+
+/* ================= SHARED FOOD COST LISTENERS ================= */
+function setGlobalFoodCost(pct, labelHTML){
+  globalFoodCostPct = clampPct(pct);
+  
+  document.getElementById('itemRmPctInput').value = globalFoodCostPct;
+  document.getElementById('takehomeRmPctInput').value = globalFoodCostPct;
+  
+  const text = labelHTML || `Custom (${globalFoodCostPct}%)`;
+  document.getElementById('bmDishName1').innerHTML = text;
+  document.getElementById('bmDishName2').innerHTML = text;
+  
+  updateAllUI();
+}
+
+document.getElementById('itemRmPctInput').addEventListener('input', (e)=> setGlobalFoodCost(e.target.value));
+document.getElementById('itemRmDec').addEventListener('click', ()=> setGlobalFoodCost(globalFoodCostPct - 1));
+document.getElementById('itemRmInc').addEventListener('click', ()=> setGlobalFoodCost(globalFoodCostPct + 1));
+
+document.getElementById('takehomeRmPctInput').addEventListener('input', (e)=> setGlobalFoodCost(e.target.value));
+document.getElementById('takehomeRmDec').addEventListener('click', ()=> setGlobalFoodCost(globalFoodCostPct - 1));
+document.getElementById('takehomeRmInc').addEventListener('click', ()=> setGlobalFoodCost(globalFoodCostPct + 1));
+
+/* ================= ADD CARD BUTTONS ================= */
+document.getElementById('addItemDineCostBtn').addEventListener('click', ()=>{
+  itemDineCosts.push({
+    id: 'custom_' + Date.now(),
+    name: 'Additional Cost',
+    type: 'pct', mode: 'pct', pctVal: 0, fixedVal: 0, enabled: true, isCustom: true
+  });
+  renderAllSystemCards();
+  updateAllUI();
+});
+
+document.getElementById('addItemZomCostBtn').addEventListener('click', ()=>{
+  itemZomCosts.push({
+    id: 'custom_' + Date.now(),
+    name: 'Additional Cost',
+    type: 'pct', mode: 'pct', pctVal: 0, fixedVal: 0, enabled: true, isCustom: true
+  });
+  renderAllSystemCards();
+  updateAllUI();
+});
+
+document.getElementById('addTakehomeDineCostBtn').addEventListener('click', ()=>{
+  takehomeState.dineItems.push({
+    id: 'custom_' + Date.now(),
+    name: 'Additional Cost',
+    type: 'pct', mode: 'pct', pctVal: 0, fixedVal: 0, enabled: true, isCustom: true
+  });
+  renderAllSystemCards();
+  updateAllUI();
+});
+
+document.getElementById('addTakehomeZomCostBtn').addEventListener('click', ()=>{
+  takehomeState.zomItems.push({
+    id: 'custom_' + Date.now(),
+    name: 'Additional Cost',
+    type: 'pct', mode: 'pct', pctVal: 0, fixedVal: 0, enabled: true, isCustom: true
+  });
+  renderAllSystemCards();
+  updateAllUI();
+});
+
+/* ================= MINI SEARCH LOGIC (BOTH CALCULATORS) ================= */
+function setupMiniSearch(inputId, dropdownId){
+  const input = document.getElementById(inputId);
+  const dropdown = document.getElementById(dropdownId);
+
+  input.addEventListener('input', (e) => {
+    const val = e.target.value.trim().toLowerCase();
+    if(!val) {
+      dropdown.style.display = 'none';
+      return;
+    }
+    const matches = DISH_DATABASE.filter(d => 
+      d.name.toLowerCase().includes(val) || d.cat.toLowerCase().includes(val)
+    );
+    if(matches.length === 0){
+      dropdown.innerHTML = `<div style="padding:6px;opacity:0.6;text-align:center;">No matches found</div>`;
+    } else {
+      dropdown.innerHTML = matches.map(d => {
+        const color = d.isVeg ? '#1E8449' : '#B3341F';
+        const badge = d.isVeg ? '🟢' : '🔴';
+        return `<div class="mini-search-item" onclick="selectDishBenchmark(${d.pct}, '${d.name.replace(/'/g, "\\'")}', ${d.isVeg})">
+          <strong style="color:${color};">${badge} ${d.name}</strong> (${d.cat}) — <span style="color:var(--crimson);font-weight:800;">${d.pct}%</span>
+        </div>`;
+      }).join('');
+    }
+    dropdown.style.display = 'block';
+  });
+}
+
+function selectDishBenchmark(pct, name, isVeg){
   const color = isVeg ? '#1E8449' : '#B3341F';
   const badge = isVeg ? '🟢' : '🔴';
-  document.getElementById('bmDishName').innerHTML = `<span style="color:${color};">${badge} ${name}</span> — <strong>${pct}%</strong>`;
-  miniSearchInput.value = '';
-  miniDropdown.style.display = 'none';
+  const labelHTML = `<span style="color:${color};">${badge} ${name}</span> — <strong>${pct}%</strong>`;
+  
+  setGlobalFoodCost(pct, labelHTML);
+
+  document.getElementById('miniDishSearch1').value = '';
+  document.getElementById('miniDishSearch2').value = '';
+  document.getElementById('miniSearchDropdown1').style.display = 'none';
+  document.getElementById('miniSearchDropdown2').style.display = 'none';
 }
+
+setupMiniSearch('miniDishSearch1', 'miniSearchDropdown1');
+setupMiniSearch('miniDishSearch2', 'miniSearchDropdown2');
 
 document.addEventListener('click', (e) => {
   if(!e.target.closest('.mini-search-wrap')){
-    miniDropdown.style.display = 'none';
+    document.getElementById('miniSearchDropdown1').style.display = 'none';
+    document.getElementById('miniSearchDropdown2').style.display = 'none';
   }
 });
 
+/* ================= TAB 3: HELP CENTRE DATABASE TABLE ================= */
 function renderDishTable(filterText = ""){
   const tbody = document.getElementById('dishTableBody');
   tbody.innerHTML = "";
@@ -1102,90 +1654,29 @@ function renderDishTable(filterText = ""){
       <td><strong>${d.cat}</strong></td>
       <td style="${nameColor}font-weight:800;">${badgeSymbol}${d.name}</td>
       <td><span class="pill">${d.pct}%</span></td>
-      <td><button type="button" class="apply-btn" onclick="applyDishPct(${d.pct}); document.getElementById('bmDishName').innerHTML='<span style=\\'${nameColor}\\'>${badgeSymbol}${d.name.replace(/'/g, "\\'")}</span> — <strong>${d.pct}%</strong>'; document.querySelectorAll('.tab-btn')[0].click();">Apply ${d.pct}% ⚡</button></td>
+      <td><button type="button" class="apply-btn" onclick="selectDishBenchmark(${d.pct}, '${d.name.replace(/'/g, "\\'")}', ${d.isVeg}); document.querySelectorAll('.tab-btn')[0].click();">Apply ${d.pct}% ⚡</button></td>
     `;
     tbody.appendChild(tr);
   });
 }
 
-/* ================= Dual pricing wiring ================= */
-const poffInput = document.getElementById('poffInput');
-const markupInput = document.getElementById('markupInput');
-const ponInput = document.getElementById('ponInput');
-
-poffInput.addEventListener('input', ()=>{
-  pricing.Poff = clamp0(poffInput.value);
-  pricing.Pon = Math.round(pricing.Poff*(1+pricing.markup/100)*100)/100;
-  ponInput.value = pricing.Pon;
-  recalcOnly();
-});
-markupInput.addEventListener('input', ()=>{
-  pricing.markup = parseFloat(markupInput.value)||0;
-  pricing.Pon = Math.round(pricing.Poff*(1+pricing.markup/100)*100)/100;
-  ponInput.value = pricing.Pon;
-  recalcOnly();
-});
-ponInput.addEventListener('input', ()=>{
-  pricing.Pon = clamp0(ponInput.value);
-  pricing.markup = pricing.Poff>0 ? Math.round(((pricing.Pon-pricing.Poff)/pricing.Poff)*100*100)/100 : 0;
-  markupInput.value = pricing.markup;
-  recalcOnly();
-});
-
-document.getElementById('fcEnabled').addEventListener('change', (e)=>{ sharedFC.enabled = e.target.checked; recalcOnly(); });
-document.getElementById('fcPct').addEventListener('input', (e)=>{
-  sharedFC.pct = clampPct(e.target.value);
-  document.getElementById('bmDishName').textContent = `Custom (${sharedFC.pct}%)`;
-  recalcOnly();
-});
-document.querySelectorAll('[data-fc]').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    sharedFC.pct = clampPct(sharedFC.pct + (btn.dataset.fc==='inc'?1:-1));
-    document.getElementById('fcPct').value = sharedFC.pct;
-    document.getElementById('bmDishName').textContent = `Custom (${sharedFC.pct}%)`;
-    recalcOnly();
-  });
-});
-
-document.getElementById('addDineCard').addEventListener('click', ()=>{
-  dineItems.push({
-    id: 'custom_' + Date.now(),
-    type: 'pct',
-    name: 'Additional Cost',
-    pct: 0,
-    enabled: true,
-    isEditable: true
-  });
-  fullRender();
-});
-
-document.getElementById('addZomCard').addEventListener('click', ()=>{
-  zomItems.push({
-    id: 'custom_' + Date.now(),
-    type: 'pct',
-    name: 'Additional Cost',
-    pct: 0,
-    enabled: true,
-    isEditable: true
-  });
-  fullRender();
-});
-
-/* ================= Search Bar listener ================= */
 document.getElementById('dishSearchInput').addEventListener('input', (e)=>{
   renderDishTable(e.target.value);
 });
 
-/* ================= Tabs ================= */
+/* ================= TABS SWITCHING ================= */
 document.querySelectorAll('.tab-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById(btn.dataset.page).classList.add('active');
+    
+    const pageId = btn.dataset.page;
+    if(pageId){
+      document.getElementById(pageId).classList.add('active');
+    }
   });
 });
-
 /* ================= Init ================= */
 renderDishTable();
 fullRender();
