@@ -307,7 +307,7 @@
   }
   .stat-tile.cost-tile .val{ color:var(--crimson-dark); }
 
-  /* ---------- UNIFIED SCREENSHOT COST CARD DESIGN ---------- */
+  /* ---------- COST CARD DESIGN ---------- */
   .cost-card-list{
     display:flex;
     flex-direction:column;
@@ -333,7 +333,6 @@
     opacity: 0.45;
   }
 
-  /* Top Row of Card: Name on Left, Switch on Right */
   .cost-card-top {
     display: flex;
     align-items: center;
@@ -367,7 +366,6 @@
     flex-shrink: 0;
   }
 
-  /* Bottom Row of Card: Stepper + Toggle on Left, Amount Badge on Right */
   .cost-card-bottom {
     display: flex;
     align-items: center;
@@ -661,7 +659,7 @@
       <span class="l1">Margin Calculator</span>
       <span class="l2">Zomato partner pricing &amp; profitability</span>
     </div>
-    <span class="ver-pill">Ver 9.6</span>
+    <span class="ver-pill">Ver 10.1</span>
   </div>
 </header>
 
@@ -1038,7 +1036,7 @@
 
 </div>
 
-<footer class="foot">Margin Calculator Ver 9.6 — All calculations happen locally in real-time. Figures are illustrative.</footer>
+<footer class="foot">Margin Calculator Ver 10.1 — All calculations happen locally in real-time. Figures are illustrative.</footer>
 
 <script>
 /* ================= Database of Menu Items & Food Costs ================= */
@@ -1468,6 +1466,8 @@ function renderAllSystemCards(){
   const takehomeDineList = document.getElementById('takehomeDineCostList');
   const takehomeZomList = document.getElementById('takehomeZomCostList');
   takehomeDineList.innerHTML = takehomeState.dineItems.map(it => renderCardHTML(it, 'takehomeDine')).join('');
+  takehomeState.zomItems.map(it => renderCardHTML(it, 'takehomeZom')).join('');
+  takehomeDineList.innerHTML = takehomeState.dineItems.map(it => renderCardHTML(it, 'takehomeDine')).join('');
   takehomeZomList.innerHTML = takehomeState.zomItems.map(it => renderCardHTML(it, 'takehomeZom')).join('');
   takehomeState.dineItems.forEach(it => wireCardEvents(takehomeDineList, it, 'takehomeDine', updateTakehomeUI, takehomeState.dineItems));
   takehomeState.zomItems.forEach(it => wireCardEvents(takehomeZomList, it, 'takehomeZom', updateTakehomeUI, takehomeState.zomItems));
@@ -1678,9 +1678,10 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
   });
 });
 
-/* ================= Init ================= */
+/* ================= INITIALIZATION ================= */
 renderDishTable();
-fullRender();
+renderAllSystemCards();
+updateAllUI();
 </script>
 
 <!-- Vercel Analytics -->
